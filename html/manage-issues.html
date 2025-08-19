@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Issues - Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        // Admin access check
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            alert('Access Denied. Please log in as an admin.');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Manage Support Issues</h1>
+            <a href="admin.html" class="admin-action-btn secondary" style="text-decoration: none;">&larr; Back to Dashboard</a>
+        </header>
+
+        <main class="content-sections">
+            <section class="transaction-list full-width">
+                <h2>Submitted Issues</h2>
+                <div class="table-container" style="max-height: 70vh;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>User</th>
+                                <th>Issue</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issuesTableBody">
+                            <!-- Issues will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../script/firebase-config.js"></script>
+    <script src="../script/manage-issues.js"></script>
+</body>
+</html>

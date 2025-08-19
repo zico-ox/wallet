@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        // Admin access check
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            alert('Access Denied. Please log in as an admin.');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Manage All Users</h1>
+            <a href="admin.html" class="admin-action-btn secondary" style="text-decoration: none;">&larr; Back to Dashboard</a>
+        </header>
+
+        <main class="content-sections">
+            <section class="user-list full-width">
+                <h2>User Database</h2>
+                <div class="table-controls">
+                    <input type="text" id="userSearchInput" class="search-input" placeholder="Search by name or phone (UID)...">
+                    <button id="recalculateBtn" class="btn-secondary" onclick="recalculateAllEarnings()">Recalculate All Earnings</button>
+                </div>
+                <div class="table-container" style="max-height: 70vh;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone (UID)</th>
+                                <th>Balance (₹)</th>
+                                <th>Total Earnings (₹)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allUsersTableBody">
+                            <!-- User data will be injected here by userdata.js -->
+                            <tr>
+                                <td colspan="5" style="text-align: center;">Loading user data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit User Details</h2>
+            <p>User UID: <strong id="modalUserUid"></strong></p>
+            <div class="modal-form-group">
+                <label for="modalUserNameInput">User Name</label>
+                <input type="text" id="modalUserNameInput" placeholder="Enter new name">
+            </div>
+            <div class="modal-actions">
+                <button id="modalSaveButton" class="btn-approve">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../script/firebase-config.js"></script>
+    <script src="../script/userdata.js"></script>
+</body>
+</html>

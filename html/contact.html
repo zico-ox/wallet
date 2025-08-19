@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Support - Camplus Wallet</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Support</h1>
+    <p>Please describe your issue below. Our team will get back to you as soon as possible.</p>
+    <div class="contact-form">
+        <textarea id="issueText" placeholder="Enter your issue here..."></textarea>
+        <button id="submitIssueBtn">Submit Issue</button>
+        <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">Contact on WhatsApp</a>
+    </div>
+    <a href="index.html" class="back-link">← Back to Wallet</a>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="../script/firebase-config.js"></script>
+  <script src="../script/contact.js"></script>
+</body>
+</html>

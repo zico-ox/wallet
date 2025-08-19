@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Settings - Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .input-with-button {
+            display: flex;
+            gap: 10px;
+        }
+        .input-with-button input {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Admin access check
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            alert('Access Denied. Please log in as an admin.');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Withdrawal Settings</h1>
+            <a href="admin.html" class="admin-action-btn secondary" style="text-decoration: none;">&larr; Back to Dashboard</a>
+        </header>
+
+        <main class="content-sections">
+            <section class="admin-actions">
+                <h2>Manage Withdrawal Rules</h2>
+                <p class="section-description">Use these settings to control when and how users can withdraw funds from their wallets. Changes will apply to all users immediately.</p>
+                
+                <div class="settings-form-content">
+                    <div class="form-group">
+                        <label>Withdrawal Status</label>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="withdrawalStatusToggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span id="statusLabel" style="font-weight: 600;">Loading...</span>
+                        </div>
+                        <p class="helper-text">Enable or disable all user withdrawals across the platform.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="minWithdrawalAmount">Minimum Withdrawal Amount (₹)</label>
+                        <input type="number" id="minWithdrawalAmount" placeholder="e.g., 25">
+                        <p class="helper-text">The smallest amount a user is allowed to request for withdrawal.</p>
+                    </div>
+                </div>
+
+                <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
+
+                <div class="api-settings-content">
+                    <h2>API Settings for User Crediting</h2>
+                    <p class="section-description">Configure the API for crediting user wallets automatically from external services. This is for advanced use cases like rewards from other platforms.</p>
+
+                    <div class="form-group">
+                        <label>API Crediting Status</label>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="apiCreditingToggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span id="apiStatusLabel" style="font-weight: 600;">Loading...</span>
+                        </div>
+                        <p class="helper-text">Enable or disable the ability for external services to credit users via the API.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="apiSecretKey">API Secret Key</label>
+                        <div class="input-with-button">
+                            <input type="password" id="apiSecretKey" placeholder="A secret key for API authentication" readonly>
+                            <button id="toggleApiSecretBtn" class="btn-secondary">Show</button>
+                            <button id="generateApiSecretBtn" class="btn-secondary">Generate New</button>
+                        </div>
+                        <p class="helper-text">This key must be included in API requests to credit users. Keep it confidential.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button id="saveSettingsBtn" class="admin-action-btn success">Save All Settings</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../script/firebase-config.js"></script>
+    <script src="../script/withdrawal-settings.js"></script>
+</body>
+</html>

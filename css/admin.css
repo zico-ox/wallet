@@ -1,0 +1,789 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #343a40;
+    --light-text: #6c757d;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card p {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+/* Light Color Themes for Stat Cards */
+.card-theme-green {
+    background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    border-color: #c8e6c9;
+}
+.card-theme-green h3 {
+    color: #388e3c;
+}
+.card-theme-green p {
+    color: #1b5e20;
+}
+
+.card-theme-violet {
+    background: linear-gradient(135deg, #ede7f6, #f3e5f5);
+    border-color: #d1c4e9;
+}
+.card-theme-violet h3 {
+    color: #5e35b1;
+}
+.card-theme-violet p {
+    color: #4527a0;
+}
+
+.card-theme-blue {
+    background: linear-gradient(135deg, #e3f2fd, #eef6fc);
+    border-color: #bbdefb;
+}
+.card-theme-blue h3 {
+    color: #1976d2;
+}
+.card-theme-blue p {
+    color: #0d47a1;
+}
+
+.card-theme-teal {
+    background: linear-gradient(135deg, #e0f2f1, #eefbf9);
+    border-color: #b2dfdb;
+}
+.card-theme-teal h3 {
+    color: #00796b;
+}
+.card-theme-teal p {
+    color: #004d40;
+}
+
+.admin-actions {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.admin-actions h2, .content-sections h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.action-box {
+    /* Smooth slide-down animation */
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    border-top: 0px solid transparent;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.action-box.active {
+    max-height: 500px; /* Adjust if form gets taller */
+    opacity: 1;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.action-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.action-box input,
+.admin-actions .form-group input[type="number"],
+.admin-actions .form-group input[type="text"] {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Modern Action Buttons for Admin Tools (inspired by user-facing style) */
+.admin-action-btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.admin-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Primary button (for Manage Funds) */
+.admin-action-btn.primary {
+    background-color: #e6f2ff;
+    color: #0056b3;
+    border-color: #b3d7ff;
+}
+.admin-action-btn.primary:hover {
+    background-color: #d9eaff;
+}
+
+/* Warning button (for settings) */
+.admin-action-btn.warning {
+    background-color: #fff8e1;
+    color: #f57f17;
+    border-color: #ffecb3;
+}
+.admin-action-btn.warning:hover {
+    background-color: #ffeb99;
+}
+
+/* Secondary button (for Manage Users) */
+.admin-action-btn.secondary {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #dee2e6;
+}
+.admin-action-btn.secondary:hover {
+    background-color: #e9ecef;
+}
+
+/* Success button (for Manage Transactions) */
+.admin-action-btn.success {
+    background-color: #e9f7ec;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+.admin-action-btn.success:hover {
+    background-color: #d4edda;
+}
+
+/* Style for the main "Credit Amount" button in the form */
+#addFundsBtn {
+    background-color: #28a745; /* Green for success/credit */
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 400px;
+    cursor: pointer;
+}
+
+#addFundsBtn:hover {
+    background-color: #218838; /* Darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.action-box .form-group,
+.admin-actions .form-group {
+    margin-bottom: 25px;
+}
+
+.action-box .form-group label,
+.admin-actions .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.section-description {
+    margin-top: -10px;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    font-size: 1rem;
+    max-width: 80%;
+}
+
+.helper-text {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.settings-form-content {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    margin-top: 20px;
+}
+.content-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.full-width {
+    grid-column: 1 / -1; /* Span all columns */
+}
+
+.withdrawal-requests {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+#withdrawalRequestsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+#withdrawalRequestsList li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#withdrawalRequestsList li:last-child {
+    border-bottom: none;
+}
+
+.withdrawal-info {
+    flex-grow: 1;
+    padding-right: 15px;
+}
+
+.withdrawal-info span {
+    display: block;
+}
+
+.withdrawal-info .user-name {
+    font-weight: 600;
+}
+
+.withdrawal-info .user-details {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-top: 4px;
+}
+
+.withdrawal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.withdrawal-actions button,
+.issue-actions button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-approve {
+    background-color: #e9f7ec; /* Light green */
+    color: #155724; /* Dark green */
+    border-color: #c3e6cb;
+}
+.btn-approve:hover {
+    background-color: #d4edda;
+    transform: translateY(-1px);
+}
+
+.btn-reject {
+    background-color: #fbe9e7; /* Light red */
+    color: #c62828; /* Dark red */
+    border-color: #f5c6cb;
+}
+.btn-reject:hover {
+    background-color: #f8d7da;
+    transform: translateY(-1px);
+}
+
+.clickable-uid {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.clickable-uid:hover {
+    color: #0056b3;
+}
+
+.user-list, .transaction-list {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 14px 15px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+thead th {
+    background-color: #f7f9fc;
+    position: sticky;
+    top: 0;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fcfdff;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Issue Management Specific Styles */
+.issue-text {
+    white-space: pre-wrap; /* Allows text to wrap */
+    word-break: break-word;
+    max-width: 450px;
+    vertical-align: top;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.status-pending {
+    background-color: #fff8e1; /* Light Yellow */
+    color: #f57f17;      /* Dark Yellow */
+}
+.status-resolved {
+    background-color: #e8f5e9; /* Light Green */
+    color: #2e7d32;      /* Dark Green */
+}
+
+.issue-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.user-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.user-actions button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.user-actions button:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.btn-edit {
+    background-color: var(--primary-color);
+}
+
+.tx-details .tx-note {
+    font-weight: 600;
+}
+.tx-details .tx-user-info {
+    font-size: 0.85rem;
+    color: var(--light-text);
+}
+
+.tx-amount-admin {
+    font-weight: 600;
+}
+
+.tx-amount-admin.credit {
+    color: #28a745;
+}
+
+.tx-amount-admin.debit {
+    color: #dc3545;
+}
+
+@media (max-width: 992px) {
+    .content-sections {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+.btn-delete {
+    background-color: #fbe9e7; /* Light red */
+    color: #c62828; /* Dark red */
+    border-color: #f5c6cb;
+}
+.btn-delete:hover {
+    background-color: #f8d7da;
+    transform: translateY(-1px);
+}
+
+.search-input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.table-controls .search-input {
+    margin-bottom: 0; /* Reset margin as it's now in a flex container */
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-form-group {
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.modal-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.filter-select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    min-width: 220px;
+}
+
+/* Transaction Type Badges for transdat.html */
+.tx-type-credit, .tx-type-debit {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.tx-type-credit {
+    background-color: #e8f5e9; /* Light green */
+    color: #2e7d32; /* Dark green */
+}
+
+.tx-type-debit {
+    background-color: #fbe9e7; /* Light red */
+    color: #c62828; /* Dark red */
+}
+
+/* Styles for Autocomplete Search */
+.autocomplete-container {
+    position: relative;
+    max-width: 400px; /* Match the input max-width */
+}
+
+.suggestions-list {
+    display: none; /* Hidden by default */
+    position: absolute;
+    border: 1px solid #ddd;
+    border-top: none;
+    background-color: #ffffff;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+}
+
+.suggestion-item {
+    padding: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Styles for the user details preview box in the credit form */
+.user-details-preview {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: -5px; /* Pulls it closer to the input above */
+    margin-bottom: 15px;
+    display: none; /* Hidden by default */
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.user-details-preview p {
+    margin: 0 0 5px 0;
+}
+
+.user-details-preview .error {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+/* Quick Add Amount Buttons */
+.quick-amount-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.quick-amount-btn {
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid transparent;
+    padding: 6px 14px;
+    border-radius: 20px; /* pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-amount-btn:hover {
+    background-color: #dee2e6;
+    transform: translateY(-1px);
+}
+
+/* Toggle Switch Styles for Settings Page */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #28a745; /* Green for enabled */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #28a745;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}

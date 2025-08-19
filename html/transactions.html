@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Transactions - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        // Admin access check
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            alert('Access Denied. Please log in as an admin.');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Transaction History</h1>
+            <a href="admin.html" class="admin-action-btn secondary" style="text-decoration: none;">&larr; Back to Dashboard</a>
+        </header>
+
+        <main class="content-sections">
+            <section class="transaction-list full-width">
+                <h2>All Transactions</h2>
+                <div class="table-controls">
+                    <input type="text" id="txSearchInput" class="search-input" placeholder="Search by UID, type, or note...">
+                    <button id="exportPdfBtn" class="btn-secondary">Export to PDF</button>
+                </div>
+                <div class="table-container" style="max-height: 70vh;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>User (UID)</th>
+                                <th>Type</th>
+                                <th>Amount (₹)</th>
+                                <th>Note / Details</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allTransactionsTableBody">
+                            <!-- Transaction data will be injected here by transactions.js -->
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Loading transaction data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- jsPDF Libraries for PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../script/firebase-config.js"></script>
+    <script src="../script/transactions.js"></script>
+</body>
+</html>

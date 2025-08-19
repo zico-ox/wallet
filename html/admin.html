@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Camplus Wallet</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        // 🚨 CRITICAL SECURITY WARNING: This client-side check is NOT secure.
+        // It can be easily bypassed by anyone with browser developer tools.
+        // You MUST implement proper server-side authentication (e.g., using Firebase Auth)
+        // to protect your admin dashboard. This check should be removed and replaced.
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            alert('Access Denied. Please log in as an admin.');
+            // This redirect can also be bypassed.
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Admin Dashboard</h1>
+            <button id="adminLogoutBtn" class="admin-action-btn danger">Logout</button>
+        </header>
+
+        <div class="stats-cards">
+            <div class="card card-theme-blue">
+                <h3>Total Balance</h3>
+                <p>₹<span id="totalBalance">0.00</span></p>
+            </div>
+            <div class="card card-theme-green">
+                <h3>Total Earnings</h3>
+                <p>₹<span id="totalEarnings">0.00</span></p>
+            </div>
+            <div class="card card-theme-violet">
+                <h3>Total Users</h3>
+                <p><span id="totalUsers">0</span></p>
+            </div>
+            <div class="card card-theme-teal">
+                <h3>Total Withdrawn</h3>
+                <p>₹<span id="totalWithdrawn">0.00</span></p>
+            </div>
+        </div>
+
+        <section class="admin-actions">
+            <h2>Admin Actions</h2>
+            <div class="action-buttons-container">
+                <button id="manageFundsBtn" class="admin-action-btn primary">Credit Funds</button>
+                <a href="withdrawal-settings.html" class="admin-action-btn warning">Manage Withdrawals</a>
+                <a href="manage-admins.html" class="admin-action-btn warning">Manage Admins</a>
+                <a href="manage-issues.html" class="admin-action-btn secondary">Manage Issues</a>
+                <a href="userdata.html" class="admin-action-btn secondary">Manage Users</a>
+                <a href="transactions.html" class="admin-action-btn success">Manage Transactions</a>
+            </div>
+            <div id="creditFormContainer" class="action-box">
+                <h3>Credit Funds to User</h3>
+                <div class="form-group">
+                    <label for="creditUserId">User ID (Phone)</label>
+                    <div class="autocomplete-container">
+                        <input type="text" id="creditUserId" placeholder="Start typing phone number...">
+                        <div id="creditUserSuggestions" class="suggestions-list"></div>
+                    </div>
+                    <div id="creditUserDetails" class="user-details-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label for="creditAmount">Amount (₹)</label>
+                    <input type="number" id="creditAmount" placeholder="e.g., 100">
+                    <div class="quick-amount-buttons">
+                        <button class="quick-amount-btn" data-amount="10">₹10</button>
+                        <button class="quick-amount-btn" data-amount="50">₹50</button>
+                        <button class="quick-amount-btn" data-amount="100">₹100</button>
+                        <button class="quick-amount-btn" data-amount="500">₹500</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="creditNote">Note / Reason</label>
+                    <input type="text" id="creditNote" placeholder="e.g., Welcome Bonus">
+                </div>
+                <button id="addFundsBtn">Credit Funds</button>
+            </div>
+        </section>
+
+        <section class="withdrawal-requests">
+            <h2>Pending Withdrawal Requests</h2>
+            <ul id="withdrawalRequestsList">
+                <li>Loading...</li>
+            </ul>
+        </section>
+
+        <div class="content-sections">
+            <section class="user-list">
+                <h2>Recent Users</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>UID (Phone)</th>
+                                <th>Balance (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr><td colspan="3">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="transaction-list">
+                <h2>Recent Global Transactions</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Details</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="globalTxTableBody">
+                            <tr><td colspan="2">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../script/firebase-config.js"></script>
+    <script src="../script/admin.js"></script>
+</body>
+</html>

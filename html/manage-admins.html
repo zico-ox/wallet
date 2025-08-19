@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admins - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        // Admin access check
+        if (localStorage.getItem('adminLoggedIn') !== 'true') { 
+            alert('Access Denied. Please log in as an admin.');
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Manage Administrators</h1>
+            <a href="admin.html" class="admin-action-btn secondary" style="text-decoration: none;">&larr; Back to Dashboard</a>
+        </header>
+
+        <main class="content-sections">
+            <!-- Add New Admin Form -->
+            <section class="admin-actions">
+                <h2>Add New Admin</h2>
+                <div class="form-group">
+                    <label for="newAdminUid">Admin UID (Phone Number)</label>
+                    <input type="text" id="newAdminUid" placeholder="Enter a unique phone number">
+                </div>
+                <div class="form-group">
+                    <label for="newAdminPass">Admin Password</label>
+                    <input type="password" id="newAdminPass" placeholder="Set a strong password">
+                </div>
+                <button id="addAdminBtn" class="admin-action-btn success">Add Admin</button>
+            </section>
+
+            <!-- List of Current Admins -->
+            <section class="user-list full-width">
+                <h2>Current Admins</h2>
+                <div class="table-container" style="max-height: 50vh;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Admin UID</th>
+                                <th>Password</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminsTableBody">
+                            <!-- Admin data will be injected here -->
+                            <tr><td colspan="3" style="text-align: center;">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Admin Modal -->
+    <div id="editAdminModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Admin Password</h2>
+            <p>Editing password for UID: <strong id="modalAdminUid"></strong></p>
+            <div class="modal-form-group">
+                <label for="modalAdminPassInput">New Password</label>
+                <input type="text" id="modalAdminPassInput" placeholder="Enter new password">
+            </div>
+            <button id="modalSaveButton" class="btn-approve">Save Changes</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="../script/firebase-config.js"></script>
+    <script src="../script/manage-admins.js"></script>
+</body>
+</html>

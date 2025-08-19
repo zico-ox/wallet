@@ -1,0 +1,485 @@
+ * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fb;
+      padding: 20px;
+      margin: 0;
+      color: #333;
+    }
+
+    /* --- Header & Navigation --- */
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      margin: 0 auto 25px; /* Centered and with bottom margin */
+      max-width: 500px; /* Match container width */
+      position: relative; /* For dropdown positioning context */
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0056b3;
+    }
+
+    .main-nav .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .main-nav a:hover {
+      color: #007bff;
+    }
+
+    .menu-toggle {
+      display: none; /* Hidden on desktop by default */
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0; /* Remove default padding */
+      z-index: 101; /* Above nav links */
+      width: 32px;
+      height: 24px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-toggle .bar {
+        display: block;
+        width: 100%;
+        height: 4px;
+        background-color: #333;
+        border-radius: 4px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Animation to 'X' when menu is active */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .user-uid-display {
+      text-align: center;
+      margin-top: -15px;
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .modern-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #eaf2ff, #f5f9ff);
+      padding: 24px;
+      border-radius: 14px;
+      border: 1.5px solid #d0e2ff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      margin-bottom: 30px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .modern-card-left {
+      flex: 1;
+    }
+
+    .modern-card-title {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .modern-card-amount {
+      font-size: 32px;
+      font-weight: 700;
+      color: #0056b3;
+    }
+
+    .modern-card-sub {
+      font-size: 14px;
+      color: #444;
+      margin-top: 6px;
+    }
+
+    .modern-card-right {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .modern-action-btn {
+      background: #f0f6ff;
+      color: #0056b3;
+      padding: 10px 16px;
+      border: 1px solid #bcdfff;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+    }
+
+    .modern-action-btn:hover {
+      background: #e2f0ff;
+      border-color: #007bff;
+      transform: translateY(-2px);
+    }
+
+    /* --- Withdrawal Form Styles --- */
+    .withdraw-form-container {
+      background: #f9faff;
+      border: 1px solid #d9e6ff;
+      border-radius: 12px;
+      padding: 0 20px;
+      margin-top: 20px;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out, opacity 0.4s ease-out, padding 0.5s ease-out;
+    }
+
+    .withdraw-form-container.active {
+      max-height: 300px; /* Adjust if form is taller */
+      opacity: 1;
+      padding: 20px;
+    }
+
+    .withdraw-form-container h4 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .withdraw-form-container .form-group {
+        margin-bottom: 15px;
+    }
+
+    .withdraw-form-container label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        margin-bottom: 6px;
+    }
+
+    .withdraw-form-container input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .withdraw-form-container input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+
+    .withdraw-form-container button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .withdraw-form-container button:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    .tx-card {
+      background: #f6fff6;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border: 1px solid #d4f5d4;
+    }
+
+    .tx-card.withdrawal {
+      background: #f2f2f2;
+      border-color: #ccc;
+    }
+
+    .tx-card.withdrawal-approved {
+      background: #e6f0ff;
+      border-color: #007bff;
+    }
+
+    .tx-info {
+      max-width: 70%;
+    }
+
+    .tx-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: #111;
+    }
+
+    .tx-time {
+      font-size: 12px;
+      color: #666;
+      margin-top: 3px;
+    }
+
+    .tx-badge {
+      background: #e2fbe2;
+      color: #256029;
+      padding: 2px 8px;
+      font-size: 12px;
+      border-radius: 6px;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    .tx-card.withdrawal .tx-badge {
+      background: #eee;
+      color: #333;
+    }
+
+    .tx-card.withdrawal-approved .tx-badge {
+      background: #e6f0ff;
+      color: #0056b3;
+      font-weight: 600;
+    }
+
+    .tx-amount {
+      font-size: 16px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    .tx-card.withdrawal .tx-amount {
+      color: #111;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 25px;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    /* --- Profile Page Styles --- */
+    .profile-details {
+      background: linear-gradient(135deg, #f5f9ff, #eaf2ff);
+      padding: 24px;
+      border-radius: 14px;
+      border: 1.5px solid #d0e2ff;
+      margin-bottom: 30px;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #dce8ff;
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-size: 15px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .detail-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0056b3;
+      background-color: #e6f2ff;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    /* --- Contact Page Styles --- */
+    .contact-form {
+      margin-top: 15px;
+      background: #f9faff;
+      border: 1px solid #d9e6ff;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .contact-form textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      resize: vertical;
+    }
+
+    .contact-form button, .whatsapp-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 15px;
+      width: 100%;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+      display: block;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover, .whatsapp-btn:hover {
+      background: #0056b3;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      margin-top: 10px;
+    }
+
+    .whatsapp-btn:hover {
+      background: #1EAE54;
+    }
+
+    /* --- Common Styles --- */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: #0056b3;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .modern-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .modern-card-right {
+        width: 100%;
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      .modern-withdraw-btn {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle {
+        display: flex; /* Show hamburger icon */
+      }
+
+      .main-nav .nav-links {
+        display: none; /* Hide nav links by default */
+        position: absolute;
+        top: 70px; /* Position below the header */
+        right: 0;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        width: 200px;
+        flex-direction: column;
+        padding: 10px;
+        gap: 0;
+        z-index: 100;
+      }
+
+      .main-nav .nav-links.active {
+        display: flex; /* Show when menu is open */
+      }
+
+      .main-nav .nav-links li {
+        margin: 0;
+      }
+
+      .main-nav .nav-links a {
+        display: block;
+        padding: 12px 15px;
+        border-radius: 6px;
+      }
+    }

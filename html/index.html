@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camplus Wallet</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">Camplus Wallet</div>
+    <nav class="main-nav">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </nav>
+  </header>
+  <div class="container" id="walletSection">
+    <h1>👋 Hey, <span id="userName">User</span></h1>
+    <p class="user-uid-display">UID: <span id="userUid"></span></p>
+
+    <div class="modern-card">
+      <div class="modern-card-left">
+        <div class="modern-card-title">Wallet Balance</div>
+        <div class="modern-card-amount">₹<span id="balance">0</span></div>
+        <div class="modern-card-sub">Total Earnings: ₹<span id="totalCredits">0</span></div>
+      </div>
+      <div class="modern-card-right">
+        <button id="withdrawBtn" class="modern-action-btn">Withdraw</button>
+      </div>
+    </div>
+
+    <div id="withdrawForm" class="withdraw-form-container">
+      <h4>Request a Withdrawal</h4>
+      <div class="form-group">
+        <label for="withdrawAmount">Amount</label>
+        <input type="number" id="withdrawAmount" placeholder="e.g., 100" />
+      </div>
+      <div class="form-group">
+        <label for="withdrawUpi">Your UPI ID</label>
+        <input type="text" id="withdrawUpi" placeholder="e.g., yourname@upi" />
+      </div>
+      <button id="submitWithdrawalBtn">Submit Request</button>
+    </div>
+
+    <h3>Recent Transactions</h3>
+    <ul id="txList">Loading...</ul>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script src="../script/firebase-config.js"></script>
+  <script src="../script/script.js"></script>
+</body>
+</html>
