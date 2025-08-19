@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – Camplus Wallet</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-header">
+        <h1 id="formTitle">Login</h1>
+        <p>Welcome back to Camplus Wallet</p>
+      </div>
+
+      <!-- Container for displaying success or error messages -->
+      <div id="messageContainer" class="message-container"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="input-group">
+          <label for="loginUid">Phone Number</label>
+          <input type="tel" id="loginUid" placeholder="Enter your phone number" autocomplete="username" required />
+        </div>
+        <div class="input-group">
+          <label for="loginPass">Password</label>
+          <input type="password" id="loginPass" placeholder="Enter your password" autocomplete="current-password" required />
+        </div>
+        <button type="submit" id="loginBtn" class="submit-btn">
+          <span class="btn-text">Login</span>
+          <div class="spinner hidden"></div>
+        </button>
+        <p class="form-switcher">Don't have an account? <button type="button" class="link-btn" id="showRegisterLink">Register</button></p>
+      </form>
+
+      <form id="registerForm" class="hidden" novalidate>
+        <div class="input-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" placeholder="Enter your full name" autocomplete="name" required />
+        </div>
+        <div class="input-group">
+          <label for="regPhone">Phone Number</label>
+          <input type="tel" id="regPhone" placeholder="Enter a 10-digit number" autocomplete="tel" required />
+        </div>
+        <div class="input-group">
+          <label for="regPass">Set a Password</label>
+          <input type="password" id="regPass" placeholder="Create a strong password" autocomplete="new-password" required />
+        </div>
+        <button type="submit" id="registerBtn" class="submit-btn">
+          <span class="btn-text">Register</span>
+          <div class="spinner hidden"></div>
+        </button>
+        <p class="form-switcher">Already have an account? <button type="button" class="link-btn" id="showLoginLink">Login</button></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script src="script/firebase-config.js"></script>
+  <script src="script/login.js"></script>
+</body>
+</html>
