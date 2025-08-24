@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const upi = document.getElementById("withdrawUpi").value.trim();
 
         // Fetch withdrawal settings first
-        db.ref('settings/withdrawals').once('value').then(settingsSnapshot => {
+        db.ref('settings/withdrawal').once('value').then(settingsSnapshot => {
             const settings = settingsSnapshot.val() || { enabled: false, minAmount: 25 };
 
             if (settings.enabled !== true) {
